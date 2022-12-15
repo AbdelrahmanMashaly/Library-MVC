@@ -17,8 +17,8 @@ namespace LibraryMVC.Models
                 {
                     return;
                 }
-                context.Book.AddRange(new Book { Title = "Asp.net Developing", CallNumber = "ASQ 2000" },
-                    new Book { Title = "C sharp", CallNumber = "ASQ 2122" }
+                context.Book.AddRange(new Book { Title = "Asp.net Developing", CallNumber = "ASQ 2000", Author="Masner" },
+                    new Book { Title = "C sharp", CallNumber = "ASQ 2122" , Author="Tom"}
                 );
                 context.SaveChanges();
             }
