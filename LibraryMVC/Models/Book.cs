@@ -6,5 +6,6 @@
         public string Title { get; set; }
         public string CallNumber { get; set; }
         public string Author { get; set; }
+        public string imgfile { get; set; }
     }
 }

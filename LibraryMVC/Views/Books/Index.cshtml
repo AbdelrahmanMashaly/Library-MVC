@@ -4,24 +4,27 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Books Available</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add a New Book</a>
 </p>
-<table class="table">
+<table class="table table-hover table-dark">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Book Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
+                Author
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CallNumber)
+                Book Code
             </th>
-            <th></th>
+            <th>
+                Cover
+            </th>
+            <th> Tools </th>
         </tr>
     </thead>
     <tbody>
@@ -37,9 +40,12 @@
                 @Html.DisplayFor(modelItem => item.CallNumber)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.BookId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BookId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+                    <img src="/images/@item.imgfile" style="width:50px" />
+             </td>
+            <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.BookId">Edit</a> |
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.BookId">Details</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
             </td>
         </tr>
 }

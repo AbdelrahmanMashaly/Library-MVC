@@ -14,5 +14,19 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-image: url('../images/4873152.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    
+}
+
+.MyFooter {
+    background-color: darkslategray;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    color: white;
 }

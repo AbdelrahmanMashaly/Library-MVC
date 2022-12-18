@@ -15,5 +15,9 @@ namespace LibraryMVC.Data
         }
 
         public DbSet<LibraryMVC.Models.Book> Book { get; set; } = default!;
+
+        public DbSet<LibraryMVC.Models.usersaccounts> usersaccounts { get; set; }
+
+        public DbSet<LibraryMVC.Models.orders> orders { get; set; }
     }
 }

@@ -54,15 +54,22 @@ namespace LibraryMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BookId,Title,CallNumber,Author")] Book book)
+        public async Task<IActionResult> Create(IFormFile file ,[Bind("BookId,Title,CallNumber,Author")] Book book)
         {
-            if (ModelState.IsValid)
-            {
+                if (file != null)
+                {
+                    string filename = file.FileName;
+                    string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images"));
+                    using (var filestream = new FileStream(Path.Combine(path, filename), FileMode.Create))
+                    { await file.CopyToAsync(filestream); }
+
+                    book.imgfile = filename;
+                }
+
                 _context.Add(book);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(book);
+            
         }
 
         // GET: Books/Edit/5
@@ -86,7 +93,7 @@ namespace LibraryMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BookId,Title,CallNumber,Author")] Book book)
+        public async Task<IActionResult> Edit(IFormFile file,int id, [Bind("BookId,Title,CallNumber,Author,imgfile")] Book book)
         {
             if (id != book.BookId)
             {
@@ -97,6 +104,15 @@ namespace LibraryMVC.Controllers
             {
                 try
                 {
+                    if (file != null)
+                    {
+                        string filename = file.FileName;
+                        string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images"));
+                        using (var filestream = new FileStream(Path.Combine(path, filename), FileMode.Create))
+                        { await file.CopyToAsync(filestream); }
+
+                        book.imgfile = filename;
+                    }
                     _context.Update(book);
                     await _context.SaveChangesAsync();
                 }
