@@ -24,6 +24,8 @@
             <th>
                 Cover
             </th>
+            <th> Price </th>
+            <th> Quantity </th>
             <th> Tools </th>
         </tr>
     </thead>
@@ -42,6 +44,12 @@
             <td>
                     <img src="/images/@item.imgfile" style="width:50px" />
              </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
             <td>
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.BookId">Edit</a> |
                 <a class="btn btn-info" asp-action="Details" asp-route-id="@item.BookId">Details</a> |

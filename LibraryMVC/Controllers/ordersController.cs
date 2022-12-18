@@ -25,28 +25,14 @@ namespace LibraryMVC.Controllers
               return View(await _context.orders.ToListAsync());
         }
 
-        // GET: orders/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.orders == null)
-            {
-                return NotFound();
-            }
 
-            var orders = await _context.orders
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (orders == null)
-            {
-                return NotFound();
-            }
-
-            return View(orders);
-        }
 
         // GET: orders/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int? id)
         {
-            return View();
+            var book = await _context.Book.FindAsync(id);
+
+            return View(book);
         }
 
         // POST: orders/Create
@@ -54,15 +40,25 @@ namespace LibraryMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,bookId,userid,quantity,orderdate")] orders orders)
+        public async Task<IActionResult> Create(int BookId, int Quantity)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(orders);
+            orders order = new orders();
+            order.quantity = Quantity;
+            order.bookId = BookId;
+            order.userid = Convert.ToInt32(HttpContext.Session.GetString("userid")); 
+            order.orderdate = DateTime.Today;
+
+            _context.Add(order);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(orders);
+                return RedirectToAction(nameof(myorders));
+            
+        }
+        public async Task<IActionResult> myorders()
+        {
+            int id= Convert.ToInt32(HttpContext.Session.GetString("userid"));
+            var orItems = await _context.orders.FromSqlRaw("select *  from orders where  userid = '" + id + "'  ").ToListAsync();
+            return View(orItems);
+
         }
 
         // GET: orders/Edit/5

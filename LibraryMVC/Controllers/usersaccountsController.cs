@@ -53,7 +53,7 @@ namespace LibraryMVC.Controllers
                 reader.Close();
                 conn1.Close();
                 if (role == "customer")
-                    return RedirectToAction("Index", "Books");
+                    return RedirectToAction("catalogue", "Books");
 
                 else
                     return RedirectToAction("Index", "Books");

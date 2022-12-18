@@ -21,6 +21,22 @@ body {
     background-size: cover;
     
 }
+.bcbody {
+    margin-bottom: 60px;
+    background-image: url('../images/website-background-templates.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+
+}
+.ctr{
+    align-content: center;
+    font-size: x-large;
+    color: black;
+    font-family:Calibri;
+    text-align:center;
+}
 
 .MyFooter {
     background-color: darkslategray;

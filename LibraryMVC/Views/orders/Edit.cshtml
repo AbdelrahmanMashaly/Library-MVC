@@ -13,26 +13,16 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="bookId" class="control-label"></label>
-                <input asp-for="bookId" class="form-control" />
-                <span asp-validation-for="bookId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="userid" class="control-label"></label>
-                <input asp-for="userid" class="form-control" />
-                <span asp-validation-for="userid" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="quantity" class="control-label"></label>
                 <input asp-for="quantity" class="form-control" />
                 <span asp-validation-for="quantity" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="orderdate" class="control-label"></label>
-                <input asp-for="orderdate" class="form-control" />
-                <span asp-validation-for="orderdate" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="orderdate" />
+            <input type="hidden" asp-for="userid" />
+            <input type="hidden" asp-for="bookId" />
+           
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
